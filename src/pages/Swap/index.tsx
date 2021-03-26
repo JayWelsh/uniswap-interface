@@ -879,11 +879,11 @@ export default function Swap(props: RouteComponentProps<{ swapId: string }>) {
         // Transaction complete, redirect to created trade
         console.log("Trade Complete!")
         //@ts-ignore
-        let tradeClosed = receipt?.events?.[0]?.args?.tradeId;
+        let tradeClosed = receipt?.events?.[2]?.args?.tradeId;
         if(tradeClosed) {
           setTradeComplete(true)
-          setIsClosingTrade(false)
         }
+        setIsClosingTrade(false)
       })
       .catch((error: Error) => {
         setIsClosingTrade(false)
