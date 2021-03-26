@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Settings from '../Settings'
+// import Settings from '../Settings'
 import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
 
@@ -12,12 +12,17 @@ const StyledSwapHeader = styled.div`
   color: ${({ theme }) => theme.text2};
 `
 
-export default function SwapHeader() {
+interface IProps {
+  prefix: string
+}
+
+export default function SwapHeader(props: IProps) {
+  let { prefix } = props
   return (
     <StyledSwapHeader>
       <RowBetween>
-        <TYPE.black fontWeight={500}>Swap</TYPE.black>
-        <Settings />
+        <TYPE.black fontWeight={500}>{prefix} NFT Swap</TYPE.black>
+        {/* <Settings /> */}
       </RowBetween>
     </StyledSwapHeader>
   )

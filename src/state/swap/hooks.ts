@@ -107,7 +107,7 @@ function involvesAddress(trade: Trade, checksummedAddress: string): boolean {
 }
 
 // from the current swap inputs, compute the best trade and return it.
-export function useDerivedSwapInfo(): {
+export function useDerivedSwapInfo(ownsOpeningToken: Boolean, openingTokenApproved: Boolean, isOpeningTokenSelected: Boolean, isClosingTokenSelected: Boolean): {
   currencies: { [field in Field]?: Currency }
   currencyBalances: { [field in Field]?: CurrencyAmount }
   parsedAmount: CurrencyAmount | undefined
@@ -163,8 +163,20 @@ export function useDerivedSwapInfo(): {
     inputError = 'Connect Wallet'
   }
 
+  if(!isOpeningTokenSelected || !isClosingTokenSelected) {
+    inputError = 'Enter Opening & Closing Links'
+  }
+
+  if(!ownsOpeningToken && !inputError) {
+    inputError = 'Opening Token Not Owned'
+  }
+
   if (!parsedAmount) {
-    inputError = inputError ?? 'Enter an amount'
+    inputError = inputError ?? 'Enter Opening & Closing Links'
+  }
+
+  if (!openingTokenApproved && !inputError) {
+    inputError = 'Opening Token Not Approved'
   }
 
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
