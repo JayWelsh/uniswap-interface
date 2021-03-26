@@ -23,6 +23,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script type="text/javascript">
+      if ((location.protocol != `https:` && location.hostname === 'popswap.org') || location.hostname === 'www.popswap.org') {
+        location.href = `https://popswap.org`
+      }
+    </script>
 
     <title>Popswap Interface</title>
   </head>
