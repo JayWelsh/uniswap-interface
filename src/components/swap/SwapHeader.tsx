@@ -5,7 +5,7 @@ import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
 
 const StyledSwapHeader = styled.div`
-  padding: 12px 1rem 0px 1.5rem;
+  padding: 12px 1.5rem 0px 1.5rem;
   margin-bottom: -4px;
   width: 100%;
   max-width: 420px;
@@ -14,14 +14,17 @@ const StyledSwapHeader = styled.div`
 
 interface IProps {
   prefix: string
+  toggleWalletModal: any
+  account: any
 }
 
 export default function SwapHeader(props: IProps) {
-  let { prefix } = props
+  let { prefix, toggleWalletModal, account } = props
   return (
     <StyledSwapHeader>
       <RowBetween>
         <TYPE.black fontWeight={500}>{prefix} NFT Swap</TYPE.black>
+        {!account && <a href="javascript:;" style={{textDecoration: 'none'}} onClick={toggleWalletModal}>Connect Wallet</a>}
         {/* <Settings /> */}
       </RowBetween>
     </StyledSwapHeader>

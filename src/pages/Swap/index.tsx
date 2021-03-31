@@ -269,8 +269,10 @@ export default function Swap(props: RouteComponentProps<{ swapId: string }>) {
           }
         }
 
-        if(isErrorERC721 && isErrorERC1155) {
+        if(isErrorERC721 && isErrorERC1155 && account) {
           errorMessage = chainId ? `Not Found On Current Network (${NETWORK_LABELS[chainId]})` : `Not Found On Current Network`
+        } else if (!account) {
+          errorMessage = `Please Connect Wallet First`
         }
 
         setTradeClosingTokenError(errorMessage)
@@ -438,8 +440,10 @@ export default function Swap(props: RouteComponentProps<{ swapId: string }>) {
           }
         }
 
-        if(isErrorERC721 && isErrorERC1155) {
+        if(isErrorERC721 && isErrorERC1155 && account) {
           errorMessage = chainId ? `Not Found On Current Network (${NETWORK_LABELS[chainId]})` : `Not Found On Current Network`
+        } else if (!account) {
+          errorMessage = `Please Connect Wallet First`
         }
 
         setTradeOpeningTokenError(errorMessage)
@@ -949,7 +953,11 @@ export default function Swap(props: RouteComponentProps<{ swapId: string }>) {
       />
       <SwapPoolTabs active={'swap'} />
       <AppBody style={tradeComplete ? {} : {}}>
-        <SwapHeader prefix={swapClosingMode ? "Claim" : "Create"} />
+        <SwapHeader 
+          prefix={swapClosingMode ? "Claim" : "Create"}
+          toggleWalletModal={toggleWalletModal}
+          account={account}
+        />
         <Wrapper id="swap-page">
           <ConfirmSwapModal
             isOpen={showConfirm}
