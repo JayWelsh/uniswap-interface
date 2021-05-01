@@ -835,7 +835,7 @@ export default function Swap(props: RouteComponentProps<{ swapId: string }>) {
   const openTrade = async () => {
     //@ts-ignore
     if(popswapContract && chainId) {
-      let defaultExpiration = Math.floor((new Date().getTime() + (1000 * 60 * 60 * 24)) / 1000) // ~ 24 hours
+      let defaultExpiration = Math.floor((new Date().getTime() + (1000 * 60 * 60 * 24 * 7)) / 1000) // ~ 7 days
       // const estimatedGas = await popswapContract.estimateGas.openNewTrade(tradeOpeningTokenAddress, tradeOpeningTokenId, tradeOpeningTokenType, tradeClosingTokenAddress, tradeClosingTokenId, tradeClosingTokenType, defaultExpiration)
       // await popswapContract.openNewTrade(tradeOpeningTokenAddress, tradeOpeningTokenId, tradeOpeningTokenType, tradeClosingTokenAddress, tradeClosingTokenId, tradeClosingTokenType, defaultExpiration, {
       //   gasLimit: calculateGasMargin(estimatedGas)
